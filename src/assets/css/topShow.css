@@ -1,0 +1,12 @@
+.topShow {
+    width: 1240px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.topShow img {
+    width: 1340px;
+    height: auto;
+
+}

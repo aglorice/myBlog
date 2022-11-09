@@ -1,0 +1,19 @@
+.box-card {
+    background:white;
+    width: 380px;
+    float: right;
+    box-shadow: var(--card-box-shadow);
+    display: inline-block;
+    margin: 0 0 50px 0;
+}
+.clearfix {
+    text-align: center;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+.clearfix:after {
+    clear: both
+}

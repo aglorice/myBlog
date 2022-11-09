@@ -1,0 +1,7 @@
+.jumpimg{
+    transition: all 0.5s; /*transition:过度属性*/
+    cursor: pointer;  /*当鼠标进入图片的时候，鼠标的样式变为手型 */
+}
+.jumpimg:hover{
+    transform: scale(1.5); /*transform:变形属性，scale：缩放1.1倍 */
+}
