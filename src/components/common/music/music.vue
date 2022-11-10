@@ -1,6 +1,6 @@
 <template>
   <a-player
-      v-if="isShow"
+      v-show="isShow"
       :music="audio[0]"
       :list="audio"
       :showlrc="true"
@@ -12,8 +12,10 @@
 
 <script>
 import APlayer from 'vue-aplayer'
+import {mapState} from "vuex";
 
-export default {
+
+export default  {
   name: `music`,
   components: { APlayer },
   data () {
@@ -76,21 +78,26 @@ export default {
           lrc: '[00:00.00] (,,•́ . •̀,,) 抱歉，当前歌曲暂无歌词',
         },
       ],
-      isShow:this.$store.state.isShow
+    // sb:this.$store.state.isShow 为什么这样就没有了响应式的数据
     }
   },
+  computed:{
+    ...mapState(['isShow'])
+  },
   mounted () {
-
-  },
-  beforeUpdate() {
-
-  },
-  beforeDestroy () {
-
+    console.log(this)
   },
   methods: {
 
   },
+  watch:{
+    isShow:{
+      immediate:true,
+      handler(){
+        console.log("我被修改了")
+      }
+    }
+  }
 }
 </script>
 

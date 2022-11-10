@@ -16,11 +16,11 @@ export default {
 
   },
   mounted() {
-    this.$store.dispatch('modifyShow',true)
+    this.$store.dispatch('modifyshow',true)
     console.log(this.$store.state.isShow)
   },
   beforeDestroy() {
-    this.$store.dispatch('modifyShow',false)
+    this.$store.dispatch('modifyshow',false)
     console.log(this.$store.state.isShow)
   }
 }

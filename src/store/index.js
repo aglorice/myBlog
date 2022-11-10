@@ -1,17 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as getters from './getters' // 导入响应的模块，*相当于引入了这个组件下所有导出的事例
-import * as actions from './actions'
-import * as mutations from './mutations'
+import * as getters from './getters'
+
+
 
 Vue.use(Vuex)
 
 const state = {
     isShow: false // 默认值
-    // id: xxx  如果还有全局状态也可以在这里添加
-    // name:xxx
+}
+const actions = {
+    modifyshow(content,value){
+        content.commit("modifyShow",value)
+    }
 }
 
+const mutations = {
+    modifyShow(state,value){
+        state.isShow = value;
+    }
+}
 // 注册上面引入的各大模块
 const store = new Vuex.Store({
     state,    // 共同维护的一个状态，state里面可以是很多个全局状态
