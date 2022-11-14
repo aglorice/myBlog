@@ -11,7 +11,7 @@ export default {
     return{
       scrollTop:0,
       isTopShow:false, // 是否显示回到顶部图标
-      scrollTopSpeed:10
+      scrollTopSpeed:40
     }
   },
   mounted(){
@@ -31,7 +31,9 @@ export default {
           document.documentElement.scrollTop = this.scrollTop;
           this.scrollTop = this.scrollTop -this.scrollTopSpeed;
           if(this.scrollTop<=0){
+            document.documentElement.scrollTop = 0;
             clearInterval(timer);
+
           }
         }, 1);
       },

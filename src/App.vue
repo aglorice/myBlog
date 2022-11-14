@@ -1,8 +1,10 @@
 <template>
   <div id="App">
-
+    <main-tarbar></main-tarbar>
     <router-view></router-view>
     <music ></music>
+    <pagebottom></pagebottom>
+
 
 
   </div>
@@ -10,6 +12,8 @@
 
 <script>
 import music from "@/components/common/music/music";
+import Pagebottom from "@/components/common/pagebottom/pagebottom";
+import MainTarbar from "@/components/common/tarbar/mainTarbar";
 export default {
   name: 'App',
   data(){
@@ -18,7 +22,9 @@ export default {
     }
   },
   components: {
-    music:music
+    MainTarbar,
+    Pagebottom,
+    music:music,
   },
 
 }

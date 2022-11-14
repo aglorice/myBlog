@@ -1,5 +1,5 @@
 <template>
-  <div class="tar">
+  <div class="tar" v-if="tarIsShow">
     <div class="tar-head">
         <img src="https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/202210261514262.png" alt="777" width="40px" height="40px">
         <div class="tar-head-title">
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "mainTarbar",
   methods:{
@@ -61,6 +63,11 @@ export default {
     remindUrl(){
       this.$router.push('remind')
     }
+  },
+  mounted() {
+  },
+  computed:{
+    ...mapState(['tarIsShow'])
   }
 }
 </script>

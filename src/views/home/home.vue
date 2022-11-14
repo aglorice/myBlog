@@ -2,7 +2,6 @@
   <div>
       <!--    导航栏-->
     <backup></backup>
-    <maintarbar></maintarbar>
       <!--    轮播图-->
     <div class="topImg">
       <el-carousel :interval="4000" class="imgTop" type="card" >
@@ -23,18 +22,15 @@
     <!--    文章页-->
     <homearticle ></homearticle>
     <!--    页面底部-->
-    <pagebottom></pagebottom>
   </div>
 
 </template>
 
 <script>
 import backUp from "@/components/common/backUp/backUp";
-import mainTarbar from "@/components/common/tarbar/mainTarbar";
 import PersonalInformation from "@/components/common/rightCard/PersonalInformation";
 import homeArticle from "@/components/common/homeArticle/homeArticle";
 import mypublic from "@/components/common/rightCard/mypublic"; //公告卡片
-import pagebottom from "@/components/common/pagebottom/pagebottom";
 
 export default {
   name: `home`,
@@ -51,12 +47,10 @@ export default {
     }
   },
   components:{
-    maintarbar:mainTarbar,
     backup:backUp,
     PersonalInformation:PersonalInformation,
     homearticle:homeArticle,
     mypublic:mypublic,
-    pagebottom:pagebottom
   }
 }
 </script>

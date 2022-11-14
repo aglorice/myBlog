@@ -51,7 +51,17 @@
 
 <script>
 export default {
-  name: `register`
+  name: `register`,
+  mounted() {
+    this.$store.dispatch('modifybottomshow',false)
+    this.$store.dispatch('modifytarshow',false)
+
+  },
+  beforeDestroy() {
+    this.$store.dispatch('modifybottomshow',true)
+    this.$store.dispatch('modifytarshow',true)
+
+  }
 }
 </script>
 

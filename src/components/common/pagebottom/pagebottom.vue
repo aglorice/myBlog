@@ -1,13 +1,23 @@
 <template>
-  <div class="footer">
-    <p id="gy">只愿君心似我心，定不负相思意。</p>
-    <P id="bah">属123234234234234-1</P>
+  <div class="footer" v-if="bottomisShow">
+    <p id="gy">本项目使用vue | @DARLING in the FRANXX</p>
+    <P id="bah">😭属123234234234234-1</P>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
-  name: `pagebottom`
+  name: `pagebottom`,
+  data(){
+    return{
+
+    }
+  },
+  computed:{
+    ...mapState(['bottomisShow'])
+  },
 }
 </script>
 
@@ -16,23 +26,21 @@ p {
   margin: 0;
 }
 .footer {
-  margin: 100px 0 0 0;
+
   font-size: 20px;
   width: 1240px;
-  height: 100px;
+  height: 50px;
   float: bottom;
   text-align: center;
-  background: whitesmoke;
-  border-radius: 10px;
 }
 #bah {
   font-size: 15px;
 
 }
 #gy {
-  font-size: 20px;
-  font-family: 华文楷体;
-  color: #8fccdc;
+  margin-bottom: 10px;
+  font-size: 10px;
+  color: black;
   margin-top: 10px;
 }
 

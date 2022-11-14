@@ -7,19 +7,35 @@ import * as getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-    isShow: false // 默认值
+    isShow: false, // 默认值
+    bottomisShow:true,
+    tarIsShow:true
 }
 const actions = {
     modifyshow(content,value){
         content.commit("modifyShow",value)
+    },
+    modifybottomshow(content,value){ // 底部信息
+        content.commit("modifyBottomShow",value)
+    },
+    modifytarshow(content,value){
+        content.commit("modifyTarShow",value)
     }
+
 }
 
 const mutations = {
     modifyShow(state,value){
         state.isShow = value;
+    },
+    modifyBottomShow(state,value){
+        state.bottomisShow = value
+    },
+    modifyTarShow(state,value){
+        state.tarIsShow = value
     }
 }
+
 // 注册上面引入的各大模块
 const store = new Vuex.Store({
     state,    // 共同维护的一个状态，state里面可以是很多个全局状态

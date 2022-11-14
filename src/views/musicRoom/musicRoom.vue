@@ -1,18 +1,20 @@
 <template>
   <div>
-    <mainTarbar></mainTarbar>
+    <back-up></back-up>
 
   </div>
 </template>
 
 <script>
 
-import mainTarbar from "@/components/common/tarbar/mainTarbar";
 
+
+import BackUp from "@/components/common/backUp/backUp";
 export default {
   name: `musicRoom`,
   components:{
-    mainTarbar:mainTarbar,
+    BackUp
+
 
   },
   mounted() {
