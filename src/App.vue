@@ -26,8 +26,37 @@ export default {
     Pagebottom,
     music:music,
   },
-
-}
+  created () {
+    setTimeout(() => {
+      window.L2Dwidget.init({
+        pluginRootPath: 'live2dw/',
+        pluginJsPath: 'lib/',
+        pluginModelPath: 'live2d-widget-model-haru_1/assets/',
+        tagMode: false,
+        debug: false,
+        model: { jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json' },
+        display: { position: 'left', width: 200, height: 520 },
+        mobile: { show: true },
+        log: false
+      })
+    }, 3000)
+  },
+  mounted() {
+    document.addEventListener('visibilitychange', this.handleVisiable)
+  },
+  destroyed() {
+    document.removeEventListener('visibilitychange', this.handleVisiable)
+  },
+  methods: {
+    handleVisiable(e) {
+        if (e.target.visibilityState === 'visible') {
+          document.title = "被发现啦(┬┬﹏┬┬)"
+        }else {
+          document.title = "我藏好啦(❁´◡`❁)"
+        }
+      }
+    }
+  }
 </script>
 
 <style>

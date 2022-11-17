@@ -26,7 +26,7 @@ p {
   margin: 0;
 }
 .footer {
-
+  margin-top: 60px;
   font-size: 20px;
   width: 1240px;
   height: 50px;

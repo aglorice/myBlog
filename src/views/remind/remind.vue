@@ -6,7 +6,7 @@
     </div>
     <div class="remind">
       <div class="remind-head">
-        <h1>个人简介</h1>
+        <h1 >个人简介</h1>
       </div>
 
     </div>
@@ -32,16 +32,15 @@ export default {
   border-radius: 10px;
   background-color: white;
   width: 1240px;
-  height: 600px;
 
 }
 .remind-head {
   width: 1160px;
-  background-color: gray;
-  height: 520px;
+  background-color: whitesmoke;
   margin: 40px 40px 40px 40px;
 }
 .remind h1 {
   text-align: center;
+  font-weight: lighter;
 }
 </style>

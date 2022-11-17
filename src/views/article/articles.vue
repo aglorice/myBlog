@@ -16,7 +16,7 @@
 
 import backUp from "@/components/common/backUp/backUp";
 export default {
-  name: `article`,
+  name: `articles`,
   components:{
     backUp:backUp
   }

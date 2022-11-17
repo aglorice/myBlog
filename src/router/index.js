@@ -6,10 +6,12 @@ const MusicRoom = ()=> import ("@/views/musicRoom/musicRoom");
 const Remind = ()=> import ("@/views/remind/remind");
 const Categorize = ()=> import("@/views/categorize/categorize");
 const Pag = ()=> import("@/views/pag/pag");
-const Article = ()=> import("@/views/article/article");
+const Article = ()=> import("@/views/article/articles");
 const Login = ()=> import("@/views/login/login");
 const Register = ()=> import("@/views/register/register");
 const Home = ()=> import("@/views/home/home");
+const Filetime = ()=> import("@/views/filetime/filetime");
+
 
 
 Vue.use(VueRouter);
@@ -63,6 +65,13 @@ const routes = [
         }
     },
     {
+        path: '/filetime',
+        component:Filetime,
+        meta: {
+            title: '归档'
+        }
+    },
+    {
         path: '/musicRoom',
         component:MusicRoom,
         meta:{
@@ -83,6 +92,14 @@ const router =  new VueRouter({
     routes,
 
 })
+// 把这段代码直接粘贴到router/index.js中的Vue.use(VueRouter)之前
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function(location) {
+    return originalPush.call(this, location).catch(err => {
+        err
+    })
+};
+
 // vue的路由守卫()
 router.beforeEach((to, from, next) => {
     /* 路由发生变化修改页面title */

@@ -149,7 +149,7 @@ export default {
 .article-body-datetime-img {
   height: 14px;
   width: auto;
-  margin: 13px;
+  margin: 13px 13px 13px 0;
   float: left;
 }
 .article-body-datetime-img:hover{
@@ -158,11 +158,11 @@ export default {
 .article-body-datetime-p {
   float: left;
   font-size: 14px;
-  margin: 12px;
+  margin: 12px 12px 12px 0px;
   color: gray;
 }
 .article-body-datetime-head {
-  width: 150px;
+  width: 120px;
   height: 40px;
   display: inline-block;
   float: left;

@@ -19,11 +19,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch('modifyshow',true)
-    console.log(this.$store.state.isShow)
   },
   beforeDestroy() {
     this.$store.dispatch('modifyshow',false)
-    console.log(this.$store.state.isShow)
   }
 }
 </script>

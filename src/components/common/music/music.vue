@@ -195,7 +195,7 @@ export default  {
     ...mapState(['isShow'])
   },
   mounted () {
-    console.log(this)
+
   },
   methods: {
 
