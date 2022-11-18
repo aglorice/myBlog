@@ -97,4 +97,14 @@ span{
   width: 400px;
   height: 36.67px;
 }
+::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #999;
+}
 </style>

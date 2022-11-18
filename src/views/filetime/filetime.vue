@@ -20,11 +20,14 @@
         </el-timeline>
       </div>
     </div>
-
+<!--    回到顶部-->
+    <backUp></backUp>
   </div>
 </template>
 
 <script>
+import backUp from "@/components/common/backUp/backUp";
+
 export default {
   name: `filetime`,
   data(){
@@ -56,6 +59,9 @@ export default {
         },
       ]
     }
+  },
+  components:{
+    backUp:backUp
   }
 }
 </script>

@@ -16,7 +16,10 @@
       <PersonalInformation></PersonalInformation>
       <!--    公告卡片-->
       <mypublic></mypublic>
-
+      <!--      标签卡片-->
+      <rightpag></rightpag>
+      <!--      分类卡片-->
+      <rightcategorize></rightcategorize>
     </div>
 
     <!--    文章页-->
@@ -30,7 +33,9 @@
 import backUp from "@/components/common/backUp/backUp";
 import PersonalInformation from "@/components/common/rightCard/PersonalInformation";
 import homeArticle from "@/components/common/homeArticle/homeArticle";
-import mypublic from "@/components/common/rightCard/mypublic"; //公告卡片
+import mypublic from "@/components/common/rightCard/mypublic";
+import rightpag from "@/components/common/rightCard/rightpag";
+import rightcategorize from "@/components/common/rightCard/rightcategorize"; //公告卡片
 
 export default {
   name: `home`,
@@ -47,10 +52,12 @@ export default {
     }
   },
   components:{
-    backup:backUp,
-    PersonalInformation:PersonalInformation,
-    homearticle:homeArticle,
-    mypublic:mypublic,
+    backup:backUp, // 回到顶部
+    PersonalInformation:PersonalInformation, //个人信息
+    homearticle:homeArticle, // 首页文章
+    mypublic:mypublic, // 公告
+    rightpag:rightpag, // 标签
+    rightcategorize:rightcategorize // 分类
   }
 }
 </script>
