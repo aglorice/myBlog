@@ -1,7 +1,7 @@
 <template>
   <div class="tar" v-if="tarIsShow">
     <div class="tar-head">
-        <img src="https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/202210261514262.png" alt="777" width="40px" height="40px">
+        <img src="@/assets/img/ice.png" alt="777" width="40px" height="40px">
         <div class="tar-head-title">
           <p>myblog</p>
         </div>

@@ -16,6 +16,8 @@
       <PersonalInformation></PersonalInformation>
       <!--    公告卡片-->
       <mypublic></mypublic>
+      <!--      天气卡片-->
+      <weather></weather>
       <!--      标签卡片-->
       <rightpag></rightpag>
       <!--      分类卡片-->
@@ -35,7 +37,8 @@ import PersonalInformation from "@/components/common/rightCard/PersonalInformati
 import homeArticle from "@/components/common/homeArticle/homeArticle";
 import mypublic from "@/components/common/rightCard/mypublic";
 import rightpag from "@/components/common/rightCard/rightpag";
-import rightcategorize from "@/components/common/rightCard/rightcategorize"; //公告卡片
+import rightcategorize from "@/components/common/rightCard/rightcategorize";
+import weather from "@/components/common/rightCard/weather"; //公告卡片
 
 export default {
   name: `home`,
@@ -57,7 +60,8 @@ export default {
     homearticle:homeArticle, // 首页文章
     mypublic:mypublic, // 公告
     rightpag:rightpag, // 标签
-    rightcategorize:rightcategorize // 分类
+    rightcategorize:rightcategorize, // 分类
+    weather:weather, // 天气
   }
 }
 </script>

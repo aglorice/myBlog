@@ -24,10 +24,7 @@ export default {
         { name: '标签二' },
         { name: '标签三' },
         { name: '标签四' },
-        { name: '标签五' },
-        { name: '标签五' },
-        { name: '标签五' },
-        { name: '标签五' },
+
       ]
     };
   }
