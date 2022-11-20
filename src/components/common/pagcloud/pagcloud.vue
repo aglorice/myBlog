@@ -121,18 +121,16 @@ export default {
             //随机生成字体颜色
             // maskImage: maskImage,
             textStyle: {
-              normal: {
-                color: function() {
-                  return (
-                      "rgb(" +
-                      Math.round(Math.random() * 255) +
-                      ", " +
-                      Math.round(Math.random() * 255) +
-                      ", " +
-                      Math.round(Math.random() * 255) +
-                      ")"
-                  );
-                }
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+              // 颜色可以用一个函数来返回字符串
+              color: function () {
+                // Random color
+                return 'rgb(' + [
+                  Math.round(Math.random() * 160),
+                  Math.round(Math.random() * 160),
+                  Math.round(Math.random() * 160)
+                ].join(',') + ')';
               }
             },
             //位置相关设置
@@ -159,5 +157,6 @@ export default {
   height:300px;
   background-color: #F5F5F5;
   margin:auto;
+  border-radius: 10px;
 }
 </style>

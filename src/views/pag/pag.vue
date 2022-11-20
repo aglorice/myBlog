@@ -4,15 +4,20 @@
     <div class="topShow">
       <img  src="https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/737385.jpg" alt="">
     </div>
+    <!--分割线-->
+    <el-divider content-position="center">四月是你的谎言</el-divider>
+    <pagcloud></pagcloud>
   </div>
 </template>
 
 <script>
 
 
+import Pagcloud from "@/components/common/pagcloud/pagcloud";
 export default {
   name: `pag`,
   components:{
+    Pagcloud
   }
 }
 </script>
