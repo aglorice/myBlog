@@ -1,8 +1,15 @@
 <template>
   <div class="comment">
 <!--    说点什么吧-->
+    <div class="comment-title">
+      <p>发表评论</p>
+      <span>
+        <el-tooltip class="item" effect="dark" content="该功能需要您注册并登录才能使用" placement="right">
 
-    <h2><img src="" alt="">发表评论</h2>
+          <img src="@/assets/img/hlep.png" alt="">
+        </el-tooltip>
+      </span>
+    </div>
     <div class="comment-input">
 
       <span>评论</span>
@@ -17,10 +24,10 @@
                   :maxlength='max_input'
         ></el-input>
         <div class="send-button">
-          <img src="@/assets/img/send.png" alt="">
+          <el-button type="primary"  class="send-button-main" round>发送</el-button>
         </div>
       </div>
-      <span style="float: right">{{strlimit}}/{{max_input}}</span>
+      <span style="float: right;font-family: siyuan,serif;">{{strlimit}}/{{max_input}}</span>
 
       <img src="@/assets/img/emoji.png" class="emojiImg" alt="" @click="changeShowEmoji">
       <VEmojiPicker
@@ -77,11 +84,16 @@ export default {
 </script>
 
 <style scoped>
+.comment-title {
+  width: 1240px;
+  height: 40px;
+  margin-bottom: 20px;
+}
 .input-comment-main {
   width: 1050px;
 }
 .input-comment {
-    width: 1100px;
+    width: 1170px;
 }
 #emoji {
   position: relative;
@@ -89,11 +101,21 @@ export default {
 .comment {
   width: 1240px;
   height: auto;
-  background-color: #e3ddd1;
+  background-color:seashell;
   border-radius: 10px;
 }
-.comment h2 {
+.comment p {
+  width: 100px;
+  font-size: 24px;
   font-family: siyuan,serif;
+  display: inline-block;
+  margin: 0;
+}
+.comment  img {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  margin-bottom: -6px;
 }
 .emojiImg {
   width: 25px;
@@ -105,14 +127,12 @@ export default {
   margin: 0 170px 0 70px;
 
 }
-.send-button img {
-  width: 50px;
-  margin: 30px 0 0 25px;
-  height: auto;
+.send-button-main {
+  margin-top: 35px;
 }
 .send-button{
   float: right;
-  width: 50px;
-  height: 117px;
+  width: 104px;
+
 }
 </style>
