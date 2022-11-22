@@ -4,10 +4,9 @@
       :music="audio[0]"
       :list="audio"
       :showlrc="true"
-      float
       mode="circulation"
       repeat="repeat-all"
-      :style="{ width: '1240px', marginTop: '20px'}"
+      style="{ width: 1240px;margin-top: 20px;border-radius:10px}"
   />
 </template>
 

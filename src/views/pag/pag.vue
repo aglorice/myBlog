@@ -6,18 +6,24 @@
     </div>
     <!--分割线-->
     <el-divider content-position="center">四月是你的谎言</el-divider>
+    <!--    云图-->
     <pagcloud></pagcloud>
+    <!--    回到顶部-->
+    <backup></backup>
   </div>
 </template>
 
 <script>
 
 
-import Pagcloud from "@/components/common/pagcloud/pagcloud";
+
+import pagcloud from "@/components/common/pagcloud/pagcloud";
+import backUp from "@/components/common/backUp/backUp";
 export default {
   name: `pag`,
   components:{
-    Pagcloud
+    pagcloud:pagcloud,
+    backup:backUp
   }
 }
 </script>

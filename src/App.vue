@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style>
+@import "@/assets/css/siyuan.css";
 :root {
   --card-box-shadow:0 3px 8px 6px rgba(7,17,27,0.05)
 }

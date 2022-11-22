@@ -7,17 +7,21 @@
     <!--分割线-->
     <el-divider content-position="center">四月是你的谎言</el-divider>
     <pagcloud></pagcloud>
+    <!--    回到顶部-->
+    <backup></backup>
   </div>
 </template>
 
 <script>
 
 import pagcloud from "@/components/common/pagcloud/pagcloud";
+import backUp from "@/components/common/backUp/backUp";
 
 export default {
   name: `categorize`,
   components:{
-    pagcloud:pagcloud
+    pagcloud:pagcloud,
+    backup:backUp
   }
 }
 </script>

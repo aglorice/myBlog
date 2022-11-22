@@ -10,6 +10,8 @@
       </div>
 
     </div>
+    <el-divider content-position="center">四月是你的谎言</el-divider>
+    <comment></comment>
     <back-up></back-up>
   </div>
 </template>
@@ -18,10 +20,12 @@
 
 
 import BackUp from "@/components/common/backUp/backUp";
+import comment from "@/components/common/comment/comment";
 export default {
   name: `remind`,
   components:{
-    BackUp
+    BackUp,
+    comment:comment
   }
 }
 </script>
