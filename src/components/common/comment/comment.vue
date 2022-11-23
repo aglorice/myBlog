@@ -127,6 +127,9 @@ export default {
   margin: 0 170px 0 70px;
 
 }
+.comment-input span {
+  font-family:siyuan,serif;
+}
 .send-button-main {
   margin-top: 35px;
 }
