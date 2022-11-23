@@ -38,7 +38,11 @@
           :showSearch="false"
           @select="selectEmoji"
       />
-
+<!--      展示评论-->
+    <div class="all_comment">
+      <el-divider content-position="center">四月是你的谎言</el-divider>
+      <p>全部评论</p>
+    </div>
 
     </div>
 
@@ -84,6 +88,10 @@ export default {
 </script>
 
 <style scoped>
+.all_comment {
+  width: 1100px;
+
+}
 .comment-title {
   width: 1240px;
   height: 40px;
