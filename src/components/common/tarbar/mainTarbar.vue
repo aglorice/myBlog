@@ -63,28 +63,28 @@ export default {
   },
   methods:{
     homeUrl(){
-      this.$router.push('home')
+      this.$router.push('/home')
     },
     articleUrl(){
-      this.$router.push('article')
+      this.$router.push('/article')
     },
     categorizeUrl(){
-      this.$router.push('categorize')
+      this.$router.push('/categorize')
     },
     pagUrl(){
-      this.$router.push('pag')
+      this.$router.push('/pag')
     },
     fileTimeUrl(){
-      this.$router.push('filetime')
+      this.$router.push('/filetime')
     },
     musicRoomUrl(){
-      this.$router.push('musicRoom')
+      this.$router.push('/musicRoom')
     },
     remindUrl(){
-      this.$router.push('remind')
+      this.$router.push('/remind')
     },
     logOut(){
-      this.$router.push('login')
+      this.$router.push('/login')
     }
   },
   mounted() {

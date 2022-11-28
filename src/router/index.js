@@ -11,7 +11,7 @@ const Login = ()=> import("@/views/login/login");
 const Register = ()=> import("@/views/register/register");
 const Home = ()=> import("@/views/home/home");
 const Filetime = ()=> import("@/views/filetime/filetime");
-
+const detailArticle = ()=> import("@/views/detailArticle/detailArticle")
 
 
 Vue.use(VueRouter);
@@ -48,11 +48,20 @@ const routes = [
         component:Article,
         meta:{
             title:'文章'
+        },
+    },
+    {
+        path:'/article/details/:id',
+        component:detailArticle,
+        props:true,
+        meta: {
+            title: '文章详细'
         }
     },
     {
         path: '/categorize',
         component:Categorize,
+
         meta:{
             title:'分类'
         }

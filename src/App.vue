@@ -4,9 +4,6 @@
     <router-view></router-view>
     <music ></music>
     <pagebottom></pagebottom>
-
-
-
   </div>
 </template>
 

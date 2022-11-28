@@ -62,7 +62,8 @@ export default {
     rightpag:rightpag, // 标签
     rightcategorize:rightcategorize, // 分类
     weather:weather, // 天气
-  }
+  },
+
 }
 </script>
 

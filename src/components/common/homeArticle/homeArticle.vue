@@ -1,13 +1,12 @@
 <template>
   <div >
-
-      <div  class="article" v-for="(article,index) in articles" :key="index" >
+      <div  class="article"  v-for="(article,index) in articles" :key="index" >
         <div class="article-img" >
-          <img :src="article.imgsrc" alt="">
+          <router-link :to="`/article/details/${article.id}`" ><img :src="article.imgsrc" alt=""></router-link>
         </div>
         <div class="article-body">
           <div class="article-body-head">
-            <h2 id="articleTitle">{{article.title}}</h2>
+            <router-link :to="`/article/details/${article.id}`" ><h2 id="articleTitle">{{article.title}}</h2></router-link>
           </div>
           <div class="article-body-mid">
             <div class="article-body-datetime-head">
@@ -39,93 +38,48 @@
 </template>
 
 <script>
+import {getArticle} from "@/api/http";
+import variable from "@/assets/js/variable";
 export default {
   name: "homeArticle",
   data(){
     return{
-      articles:[
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你言",
-          datetime:"2022-1-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言言四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/690810.png"
-        },
-        {
-          title:"四月谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你言",
-          datetime:"2022-1-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言言四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/690810.png"
-        },
-        {
-          title:"四月谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你四月是你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-        {
-          title:"四月是你的谎言",
-          datetime:"2022-10-30",
-          category:"Python",
-          Pageview:123,
-          content:"四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言四月是你的谎言你的谎言四月是你的谎言四月是你的谎言的谎言四月是你的谎言四月是你的谎言",
-          imgsrc:"https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/629528.jpg"
-        },
-      ]
+      articles:[]
     }
+  },
+  mounted() {
+
+    getArticle(null).then((res) => {
+      if (res.code === 200) {
+        this.$message({
+          message: '数据获取成功!',
+          type: 'success',
+          duration: 1500
+        });
+        let data = res['context']
+        for (let item in data){
+          this.articles.push({
+            id:data[item]['pk'],
+            title:data[item]['fields']['title'],
+            datetime:data[item]['fields']['created_time'],
+            category:data[item]['fields']['categorize'],
+            Pageview:data[item]['fields']['page_view'],
+            content:data[item]['fields']['describe'],
+            imgsrc:variable.base_url_img+data[item]['fields']['head_img']
+          })
+        }
+
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
   }
 }
 </script>
