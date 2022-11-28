@@ -6,7 +6,6 @@ axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
 const http=  axios.create({
     baseURL:variable.base_url,
-    timeout:6000,//响应时间
     // headers:{"Content-Type":"application/json;charset=utf-8"},
 })
 

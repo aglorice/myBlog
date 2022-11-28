@@ -15,18 +15,31 @@
 </template>
 
 <script>
+import {getPag} from "@/api/http";
+
+
 export default {
   name: `rightpag`,
   data() {
     return {
       tags: [
-        { name: 'python' },
-        { name: '标签二' },
-        { name: '标签三' },
-        { name: '标签四' },
-
       ]
     };
+  },
+  mounted() {
+    getPag(null).then((res) => {
+      if (res.code === 200) {
+        this.tags = res['context']
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }
 </script>

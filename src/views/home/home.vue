@@ -63,6 +63,9 @@ export default {
     rightcategorize:rightcategorize, // 分类
     weather:weather, // 天气
   },
+  mounted() {
+
+  }
 
 }
 </script>

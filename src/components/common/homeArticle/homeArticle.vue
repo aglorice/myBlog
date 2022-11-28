@@ -174,7 +174,7 @@ export default {
   float: left;
 }
 .article-body-category {
-  width: 100px;
+  width: 120px;
   height: 40px;
   float: left;
   display: inline-block;

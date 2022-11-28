@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import {getCategorize} from "@/api/http";
+
 export default {
   name: `rightcategorize`,
   data() {
@@ -26,6 +28,21 @@ export default {
         { name: 'java' },
       ]
     };
+  },
+  mounted() {
+    getCategorize(null).then((res) => {
+      if (res.code === 200) {
+        this.tags = res['context']
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }
 </script>

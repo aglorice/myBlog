@@ -1,10 +1,16 @@
 <template>
+
   <div id="App">
+
     <main-tarbar></main-tarbar>
-    <router-view></router-view>
+    <keep-alive include="home">
+      <router-view></router-view>
+    </keep-alive>
+
     <music ></music>
     <pagebottom></pagebottom>
   </div>
+
 </template>
 
 <script>
@@ -37,8 +43,10 @@ export default {
         log: false
       })
     }, 3000)
+
   },
   mounted() {
+    document.getElementById('app-cockpit-loading').remove(); // 移除loading
     document.addEventListener('visibilitychange', this.handleVisiable)
   },
   destroyed() {
@@ -104,5 +112,10 @@ span{
 ::-webkit-scrollbar-thumb
 {
   background-color: #999;
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }
 </style>
