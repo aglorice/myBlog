@@ -1,5 +1,13 @@
 <template>
   <div >
+    <vue-element-loading :active="true"
+                         id="loading"
+                         spinner="line-scale"
+                         color="#84DDE0FF"
+                         size="60"
+                         text="@DARLING in the FRANXX"
+                         background-color="rgba(95, 158, 160, 1)"
+                         is-full-screen />
       <div  class="article"  v-for="(article,index) in articles" :key="index" >
         <div class="article-img" >
           <router-link :to="`/article/details/${article.id}`" ><img :src="article.imgsrc" alt=""></router-link>
@@ -40,12 +48,17 @@
 <script>
 import {getArticle} from "@/api/http";
 import variable from "@/assets/js/variable";
+import VueElementLoading from "vue-element-loading";
+
 export default {
   name: "homeArticle",
   data(){
     return{
       articles:[]
     }
+  },
+  components:{
+    VueElementLoading
   },
   mounted() {
 
@@ -56,6 +69,7 @@ export default {
           type: 'success',
           duration: 1500
         });
+        document.getElementById('loading').remove()
         let data = res['context']
         for (let item in data){
           this.articles.push({

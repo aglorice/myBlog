@@ -17,17 +17,21 @@
 import music from "@/components/common/music/music";
 import Pagebottom from "@/components/common/pagebottom/pagebottom";
 import MainTarbar from "@/components/common/tarbar/mainTarbar";
+
+
 export default {
   name: 'App',
   data(){
     return{
-      isShow:this.$store.state.isShow
+        isShow:this.$store.state.isShow
+
     }
   },
   components: {
     MainTarbar,
     Pagebottom,
     music:music,
+
   },
   created () {
     setTimeout(() => {
@@ -45,8 +49,10 @@ export default {
     }, 3000)
 
   },
+  computed:{
+
+  },
   mounted() {
-    document.getElementById('app-cockpit-loading').remove(); // 移除loading
     document.addEventListener('visibilitychange', this.handleVisiable)
   },
   destroyed() {
@@ -69,8 +75,10 @@ export default {
 :root {
   --card-box-shadow:0 3px 8px 6px rgba(7,17,27,0.05)
 }
-body{
 
+body{
+/*//修改鼠标样式*/
+  cursor: url('@/assets/img/default.cur'),auto;
   background-image: url("@/assets/img/login-backgound.png");
   background-attachment: fixed;
   display: flex;
@@ -113,9 +121,5 @@ span{
 {
   background-color: #999;
 }
-.loading {
-  width: 100%;
-  height: 100%;
-  background-color: red;
-}
+
 </style>

@@ -9,7 +9,9 @@ Vue.use(Vuex)
 const state = {
     isShow: false, // 默认值
     bottomisShow:true,
-    tarIsShow:true
+    tarIsShow:true,
+    loading:false
+    // 动画加载
 }
 const actions = {
     modifyshow(content,value){
@@ -20,6 +22,9 @@ const actions = {
     },
     modifytarshow(content,value){
         content.commit("modifyTarShow",value)
+    },
+    modifyloadingfshow(content,value){
+        content.commit("modifyLoadingfShow",value)
     }
 
 }
@@ -33,7 +38,10 @@ const mutations = {
     },
     modifyTarShow(state,value){
         state.tarIsShow = value
-    }
+    },
+    modifyLoadingfShow(state,value){
+        state.tarIsShow = value
+    },
 }
 
 // 注册上面引入的各大模块

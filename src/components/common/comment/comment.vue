@@ -111,6 +111,7 @@ export default {
   height: auto;
   background-color:seashell;
   border-radius: 10px;
+  margin-top: 40px;
 }
 .comment p {
   width: 100px;
