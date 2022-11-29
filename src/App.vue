@@ -1,14 +1,24 @@
 <template>
 
   <div id="App">
+    <vue-element-loading :active="true"
+                         id="loading"
+                         spinner="line-scale"
+                         color="#84DDE0FF"
+                         size="60"
+                         text="@DARLING in the FRANXX"
+                         background-color="rgba(95, 158, 160, 1)"
+                         is-full-screen />
+    <div v-if="isRenderStart">
+      <main-tarbar></main-tarbar>
+      <keep-alive include="home">
+        <router-view></router-view>
+      </keep-alive>
 
-    <main-tarbar></main-tarbar>
-    <keep-alive include="home">
-      <router-view></router-view>
-    </keep-alive>
+      <music ></music>
+      <pagebottom></pagebottom>
+    </div>
 
-    <music ></music>
-    <pagebottom></pagebottom>
   </div>
 
 </template>
@@ -17,20 +27,25 @@
 import music from "@/components/common/music/music";
 import Pagebottom from "@/components/common/pagebottom/pagebottom";
 import MainTarbar from "@/components/common/tarbar/mainTarbar";
+import {getArticle} from "@/api/http";
+import variable from "@/assets/js/variable";
+import VueElementLoading from "vue-element-loading";
 
 
 export default {
   name: 'App',
   data(){
     return{
-        isShow:this.$store.state.isShow
-
+        isShow:this.$store.state.isShow,
+        loading:true,
+        isRenderStart:false // 当父组件的数据加载完才加载子组件
     }
   },
   components: {
     MainTarbar,
     Pagebottom,
     music:music,
+    VueElementLoading
 
   },
   created () {
@@ -47,13 +62,52 @@ export default {
         log: false
       })
     }, 3000)
-
   },
   computed:{
 
   },
   mounted() {
+
+
+    getArticle(null).then((res) => {
+      if (res.code === 200) {
+        this.$message({
+          message: '数据获取成功!',
+          type: 'success',
+          duration: 1500
+        });
+        document.getElementById('loading').remove()
+        let data = res['context']
+        let articles = [];
+        for (let item in data){
+          articles.push({
+            id:data[item]['pk'],
+            title:data[item]['fields']['title'],
+            datetime:data[item]['fields']['created_time'],
+            category:data[item]['fields']['categorize'],
+            Pageview:data[item]['fields']['page_view'],
+            content:data[item]['fields']['describe'],
+            imgsrc:variable.base_url_img+data[item]['fields']['head_img']
+          })
+        }
+        this.$store.dispatch('putarticle',articles)
+        this.isRenderStart = true
+        // 将信息提交到vuex
+
+
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
     document.addEventListener('visibilitychange', this.handleVisiable)
+
   },
   destroyed() {
     document.removeEventListener('visibilitychange', this.handleVisiable)

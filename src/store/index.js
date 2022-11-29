@@ -10,8 +10,8 @@ const state = {
     isShow: false, // 默认值
     bottomisShow:true,
     tarIsShow:true,
-    loading:false
-    // 动画加载
+    articles:[]
+    // 文章简介加载
 }
 const actions = {
     modifyshow(content,value){
@@ -23,8 +23,8 @@ const actions = {
     modifytarshow(content,value){
         content.commit("modifyTarShow",value)
     },
-    modifyloadingfshow(content,value){
-        content.commit("modifyLoadingfShow",value)
+    putarticle(content,value){
+        content.commit("putArticle",value)
     }
 
 }
@@ -39,8 +39,8 @@ const mutations = {
     modifyTarShow(state,value){
         state.tarIsShow = value
     },
-    modifyLoadingfShow(state,value){
-        state.tarIsShow = value
+    putArticle(state,value){
+        state.articles = value
     },
 }
 

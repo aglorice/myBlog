@@ -1,6 +1,26 @@
 <template>
+
   <div class="article">
-    <div class="article_head">
+    <div style="width: 1240px">
+      <el-skeleton style="width: 240px" :loading="loading" animated>
+        <template slot="template">
+          <el-skeleton-item
+              variant="image"
+              style="width: 1240px; height: 500px;"
+          />
+          <div style="padding: 14px;">
+            <el-skeleton-item variant="h3" style="width: 50%;" />
+            <div
+                style="display: flex; align-items: center;  margin-top: 16px; height: 16px;">
+              <el-skeleton-item variant="text" style="margin-right: 16px;" />
+              <el-skeleton-item variant="text" style="width: 30%;" />
+            </div>
+          </div>
+        </template>
+      </el-skeleton>
+    </div>
+
+    <div class="article_head" v-show="!loading">
       <div class="head_img_box">
         <img id="head_img" :src="articles.imgsrc" alt="">
         <div class="head_content">
@@ -27,7 +47,7 @@
       </div>
     </div>
     <el-divider content-position="center">四月是你的谎言</el-divider>
-    <div class="article_body">
+    <div class="article_body" v-show="!loading">
       <v-md-preview :text="articles.article" ></v-md-preview>
     </div>
     <back-up></back-up>
@@ -48,6 +68,8 @@ export default {
   data(){
     return{
       articles:[],
+      loading: true,
+      currentDate: '2021-06-01',
     }
   },
   mounted() {
@@ -70,6 +92,7 @@ export default {
             imgsrc:variable.base_url_img+data[item]['fields']['head_img']
           }
         }
+        this.loading = false // 关闭加载
       } else {
         this.$message({
           type: 'info',

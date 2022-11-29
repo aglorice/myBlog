@@ -1,13 +1,5 @@
 <template>
   <div >
-    <vue-element-loading :active="true"
-                         id="loading"
-                         spinner="line-scale"
-                         color="#84DDE0FF"
-                         size="60"
-                         text="@DARLING in the FRANXX"
-                         background-color="rgba(95, 158, 160, 1)"
-                         is-full-screen />
       <div  class="article"  v-for="(article,index) in articles" :key="index" >
         <div class="article-img" >
           <router-link :to="`/article/details/${article.id}`" ><img :src="article.imgsrc" alt=""></router-link>
@@ -46,9 +38,9 @@
 </template>
 
 <script>
-import {getArticle} from "@/api/http";
-import variable from "@/assets/js/variable";
-import VueElementLoading from "vue-element-loading";
+
+import {mapState} from "vuex";
+
 
 export default {
   name: "homeArticle",
@@ -57,43 +49,14 @@ export default {
       articles:[]
     }
   },
+  created() {
+    this.articles = this.$store.state.articles
+  },
   components:{
-    VueElementLoading
+    ...mapState(['articles'])
   },
   mounted() {
-
-    getArticle(null).then((res) => {
-      if (res.code === 200) {
-        this.$message({
-          message: '数据获取成功!',
-          type: 'success',
-          duration: 1500
-        });
-        document.getElementById('loading').remove()
-        let data = res['context']
-        for (let item in data){
-          this.articles.push({
-            id:data[item]['pk'],
-            title:data[item]['fields']['title'],
-            datetime:data[item]['fields']['created_time'],
-            category:data[item]['fields']['categorize'],
-            Pageview:data[item]['fields']['page_view'],
-            content:data[item]['fields']['describe'],
-            imgsrc:variable.base_url_img+data[item]['fields']['head_img']
-          })
-        }
-
-      } else {
-        this.$message({
-          type: 'info',
-          message: '数据获取失败',
-          duration: 1500
-        });
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
-
+    console.log()
   }
 }
 </script>
