@@ -12,7 +12,7 @@
     <div v-if="isRenderStart">
       <main-tarbar></main-tarbar>
       <transition name="slide-left" mode="out-in">
-        <keep-alive include="home,articles">
+        <keep-alive include="home,articles,categorize,pag">
 
             <router-view></router-view>
 

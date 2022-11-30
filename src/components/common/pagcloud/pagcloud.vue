@@ -12,9 +12,10 @@ import "echarts-wordcloud/dist/echarts-wordcloud.min";
 
 export default {
   name:`pagcloud`,
+  props:['data'],
   data() {
     return {
-      wordList:this.$store.state.pageCount
+      wordList:this.$props.data
     }
   },
   created() {

@@ -75,3 +75,13 @@ export async function getArticleCount(params){
     })
 }
 
+
+export async function getCountCategorize(params){
+    return await request({
+        url:'/api_categorize/countCategorize/',
+        method :'get',
+        params:params,
+    })
+}
+
+

@@ -1,5 +1,6 @@
 <template>
   <div class="footer" v-if="bottomisShow">
+    <img id="footer_img" src="@/assets/img/sakura.png">
     <p id="gy">本项目使用vue | @DARLING in the FRANXX</p>
     <P id="bah">😭属123234234234234-1</P>
   </div>
@@ -42,6 +43,16 @@ p {
   font-size: 10px;
   color: black;
   margin-top: 10px;
+}
+#footer_img {
+  width: 40px;
+  height: 40px;
+  animation:fadenum 2s linear infinite;
+}
+@keyframes fadenum{
+
+  100%{transform:rotate(360deg);}
+
 }
 
 </style>
