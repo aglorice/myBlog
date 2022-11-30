@@ -23,11 +23,6 @@ export default {
   mounted() {
     getAnnouncement(null).then((res) => {
       if (res.code === 200) {
-        this.$message({
-          message: '数据获取成功!',
-          type: 'success',
-          duration: 1500
-        });
         this.publicText = res['context'][0]['fields']['announcement']
       } else {
         this.$message({

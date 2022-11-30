@@ -50,13 +50,13 @@ export default {
     }
   },
   created() {
-    this.articles = this.$store.state.articles
+    this.articles = this.$store.state.articles[1]
   },
   components:{
     ...mapState(['articles'])
   },
   mounted() {
-    console.log()
+
   }
 }
 </script>

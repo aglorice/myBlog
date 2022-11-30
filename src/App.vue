@@ -82,19 +82,37 @@ export default {
         });
         document.getElementById('loading').remove()
         let data = res['context']
+        let page_count = res['count']
+        let data_type_vuex = []
+        let data_type_vuex_all = {}
         let articles = [];
         for (let item in data){
           articles.push({
-            id:data[item]['pk'],
-            title:data[item]['fields']['title'],
-            datetime:data[item]['fields']['created_time'],
-            category:data[item]['fields']['categorize'],
-            Pageview:data[item]['fields']['page_view'],
-            content:data[item]['fields']['describe'],
-            imgsrc:variable.base_url_img+data[item]['fields']['head_img']
+            id:data[1][item]['id'],
+            title:data[1][item]['title'],
+            datetime:data[1][item]['created_time'],
+            category:data[1][item]['categorize'],
+            Pageview:data[1][item]['page_view'],
+            content:data[1][item]['describe'],
+            imgsrc:variable.base_url_img+data[1][item]['head_img']
           })
         }
-        this.$store.dispatch('putarticle',articles)
+        for (let i=1;i<=page_count;i++){
+          for (let item in data[i]){
+            data_type_vuex.push({
+              id:data[i][item]['id'],
+              title:data[i][item]['title'],
+              datetime:data[i][item]['created_time'],
+              category:data[i][item]['categorize'],
+              Pageview:data[i][item]['page_view'],
+              content:data[i][item]['describe'],
+              imgsrc:variable.base_url_img+data[i][item]['head_img']
+            })
+          }
+          data_type_vuex_all[i] = data_type_vuex
+          data_type_vuex = []
+        }
+        this.$store.dispatch('putarticle',data_type_vuex_all)
         this.isRenderStart = true
         // 将信息提交到vuex
 
@@ -126,6 +144,8 @@ export default {
     }).catch((err) => {
       console.log(err)
     })
+    //------------------
+
     //------------------
 
     document.addEventListener('visibilitychange', this.handleVisiable)

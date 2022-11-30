@@ -90,12 +90,11 @@ export default {
   },
   mounted() {
     // 如果vuex中有数据就直接用,没有则重新请求
-    if(this.$store.state.articles.length > 0){
-      this.articles = this.$store.state.articles
+
+
       this.pagecount = this.$store.state.article.count
-    }else {
       this.handleCurrentChange(1)
-    }
+
   },
   methods: {
     // size-change	pageSize 改变时会触发	每页条数size
@@ -105,9 +104,11 @@ export default {
       this.pagesize = size
     },
     handleCurrentChange: function(currentPage) {
+      document.documentElement.scrollTop = 0;
+      if(this.$store.state.articles[currentPage].length > 0){
 
-      if(currentPage === 1 && this.$store.state.articles.length > 0){
-        this.articles = this.$store.state.articles
+        this.articles = this.$store.state.articles[currentPage]
+
       }else {
         this.currentPage = currentPage
         const params = {
@@ -129,8 +130,9 @@ export default {
                 imgsrc:variable.base_url_img+data[item]['head_img']
               })
             }
-            console.log("articles",articles)
             this.articles = articles
+
+
             this.pagecount = res['pagedate']['count']
           } else {
             this.$message({

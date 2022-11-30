@@ -10,7 +10,7 @@ const state = {
     isShow: false, // 默认值
     bottomisShow:true,
     tarIsShow:true,
-    articles:[],
+    articles:null,
     article:{
         count:'',
         categorize:'',
