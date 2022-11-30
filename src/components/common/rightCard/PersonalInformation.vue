@@ -9,15 +9,15 @@
       <div class="box-card-count">
         <div class="box-card-count-item">
           <span>文章</span>
-          <p>5</p>
+          <p>{{this.article.count}}</p>
         </div>
         <div class="box-card-count-item">
           <span>分类</span>
-          <p>2</p>
+          <p>{{this.article.categorize}}</p>
         </div>
         <div class="box-card-count-item">
           <span>标签</span>
-          <p>1</p>
+          <p>{{this.article.pag}}</p>
         </div>
       </div>
     </div>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "PersonalInformation",
   data(){
@@ -49,6 +51,11 @@ export default {
       mySign:"面朝大海，春暖花开"
     }
   },
+  computed:{
+    //意思是将vuex中的city数据映射到组件的computed属性里
+    ...mapState(["article"])
+  },
+
   methods:{
     toGithub(){
       window.location.href = 'https://github.com/aglorice'

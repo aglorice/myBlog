@@ -10,7 +10,13 @@ const state = {
     isShow: false, // 默认值
     bottomisShow:true,
     tarIsShow:true,
-    articles:[]
+    articles:[],
+    article:{
+        count:'',
+        categorize:'',
+        pag:''
+    }, // 文章总数
+    pageCount:[], // 标签计数
     // 文章简介加载
 }
 const actions = {
@@ -25,6 +31,9 @@ const actions = {
     },
     putarticle(content,value){
         content.commit("putArticle",value)
+    },
+    putarticleinfo(content, value) {
+        content.commit("putArticleInfo",value)
     }
 
 }
@@ -42,6 +51,10 @@ const mutations = {
     putArticle(state,value){
         state.articles = value
     },
+    putArticleInfo(state,value){
+        state.article = value
+    },
+
 }
 
 // 注册上面引入的各大模块

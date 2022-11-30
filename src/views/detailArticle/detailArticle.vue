@@ -8,13 +8,15 @@
               variant="image"
               style="width: 1240px; height: 500px;"
           />
-          <div style="padding: 14px;">
-            <el-skeleton-item variant="h3" style="width: 50%;" />
-            <div
-                style="display: flex; align-items: center;  margin-top: 16px; height: 16px;">
-              <el-skeleton-item variant="text" style="margin-right: 16px;" />
-              <el-skeleton-item variant="text" style="width: 30%;" />
-            </div>
+          <div style="padding:  14px;background-color: #F5F5F5;border-radius: 10px;margin-top: 30px;width: 1212px">
+            <el-skeleton-item variant="h3" style="width: 1212px;" />
+
+          </div>
+          <div style="padding:  14px;background-color: #F5F5F5;border-radius: 10px;margin-top: 30px;width: 1212px">
+            <el-skeleton-item variant="h3" style="width: 500px;" />
+            <el-skeleton-item variant="h3" style="width: 1212px;" />
+            <el-skeleton-item variant="h3" style="width: 1212px;" />
+
           </div>
         </template>
       </el-skeleton>
@@ -46,7 +48,10 @@
         </div>
       </div>
     </div>
-    <el-divider content-position="center">四月是你的谎言</el-divider>
+    <span v-show="!loading">
+      <el-divider   content-position="center">四月是你的谎言</el-divider>
+    </span>
+
     <div class="article_body" v-show="!loading">
       <v-md-preview :text="articles.article" ></v-md-preview>
     </div>
@@ -73,6 +78,7 @@ export default {
     }
   },
   mounted() {
+    document.documentElement.scrollTop = 0;
     const params = {
       id:this.id
     }
@@ -128,6 +134,7 @@ export default {
   height: auto;
   position: absolute;/*设为绝对定位*/
   clip: rect(0,1240px,500px,0);
+
 }
 .head_img_box {
   width: 1240px;
@@ -143,6 +150,7 @@ export default {
   position: absolute;/*设为绝对定位*/
   background-color: #F5F5F5;
   opacity: 0.8;
+  border-radius: 10px;
 }
 #head_content_title {
   text-align: center;

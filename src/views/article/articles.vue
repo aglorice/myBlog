@@ -47,8 +47,12 @@
 <!--    分页-->
     <el-pagination
         background
+        :current-page="currentPage"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
         layout="prev, pager, next"
-        :total="1000">
+        :page-size="pagesize"
+        :total="pagecount">
     </el-pagination>
 <!--    回到顶部-->
     <backUp></backUp>
@@ -62,12 +66,17 @@
 
 
 import backUp from "@/components/common/backUp/backUp";
+import { getArticlePage} from "@/api/http";
+import variable from "@/assets/js/variable";
 
 export default {
   name: `articles`,
   data(){
     return{
-      articles:[]
+      articles:[],
+      currentPage: 1, //  el-pagination 初始页
+      pagesize: 10 ,//  el-pagination 每页的数据
+      pagecount:0
     }
   },
   created() {
@@ -80,8 +89,65 @@ export default {
 
   },
   mounted() {
-    this.articles = this.$store.state.articles
+    // 如果vuex中有数据就直接用,没有则重新请求
+    if(this.$store.state.articles.length > 0){
+      this.articles = this.$store.state.articles
+      this.pagecount = this.$store.state.article.count
+    }else {
+      this.handleCurrentChange(1)
+    }
+  },
+  methods: {
+    // size-change	pageSize 改变时会触发	每页条数size
+    // current-change	currentPage 改变时会触发	当前页currentPage
+    handleSizeChange: function(size) {
+      // 请求数据
+      this.pagesize = size
+    },
+    handleCurrentChange: function(currentPage) {
+
+      if(currentPage === 1 && this.$store.state.articles.length > 0){
+        this.articles = this.$store.state.articles
+      }else {
+        this.currentPage = currentPage
+        const params = {
+          page:currentPage,
+          page_size:this.pagesize
+        }
+        getArticlePage(params).then((res) => {
+          if (res.code === 200) {
+            const data = res['context']
+            let articles = []
+            for (let item in data){
+              articles.push({
+                id:data[item]['id'],
+                title:data[item]['title'],
+                datetime:data[item]['created_time'],
+                category:data[item]['categorize'],
+                Pageview:data[item]['page_view'],
+                content:data[item]['describe'],
+                imgsrc:variable.base_url_img+data[item]['head_img']
+              })
+            }
+            console.log("articles",articles)
+            this.articles = articles
+            this.pagecount = res['pagedate']['count']
+          } else {
+            this.$message({
+              type: 'info',
+              message: '数据获取失败',
+              duration: 1500
+            });
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+      }
+
+
   }
+
 }
 </script>
 
@@ -176,7 +242,7 @@ export default {
   float: left;
 }
 .article-body-category {
-  width: 100px;
+  width: 120px;
   height: 40px;
   float: left;
   display: inline-block;

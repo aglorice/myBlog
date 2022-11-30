@@ -5,9 +5,7 @@
       <img  src="https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/746106.png" alt="">
     </div>
     <div class="remind">
-      <div class="remind-head">
-        <h1 >个人简介</h1>
-      </div>
+      <v-md-preview :text="remind" ></v-md-preview>
 
     </div>
     <el-divider content-position="center">四月是你的谎言</el-divider>
@@ -26,6 +24,11 @@ export default {
   components:{
     BackUp,
     comment:comment
+  },
+  data(){
+    return{
+      remind:'# 123123123123'
+    }
   }
 }
 </script>
@@ -36,7 +39,7 @@ export default {
   border-radius: 10px;
   background-color: white;
   width: 1240px;
-
+  margin-top: 30px;
 }
 .remind-head {
   width: 1160px;

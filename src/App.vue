@@ -11,9 +11,13 @@
                          is-full-screen />
     <div v-if="isRenderStart">
       <main-tarbar></main-tarbar>
-      <keep-alive include="home">
-        <router-view></router-view>
-      </keep-alive>
+      <transition name="slide-left" mode="out-in">
+        <keep-alive include="home,articles">
+
+            <router-view></router-view>
+
+        </keep-alive>
+      </transition>
 
       <music ></music>
       <pagebottom></pagebottom>
@@ -27,7 +31,7 @@
 import music from "@/components/common/music/music";
 import Pagebottom from "@/components/common/pagebottom/pagebottom";
 import MainTarbar from "@/components/common/tarbar/mainTarbar";
-import {getArticle} from "@/api/http";
+import {getArticle, getArticleCount} from "@/api/http";
 import variable from "@/assets/js/variable";
 import VueElementLoading from "vue-element-loading";
 
@@ -57,7 +61,7 @@ export default {
         tagMode: false,
         debug: false,
         model: { jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json' },
-        display: { position: 'left', width: 200, height: 520 },
+        display: { position: 'left', width: 150, height: 300 },
         mobile: { show: true },
         log: false
       })
@@ -105,6 +109,24 @@ export default {
     }).catch((err) => {
       console.log(err)
     })
+
+    //------------------
+    getArticleCount(null).then((res) => {
+      if (res.code === 200) {
+        let data = res['context']
+        this.$store.dispatch('putarticleinfo',data)
+        // 将信息提交到vuex
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+    //------------------
 
     document.addEventListener('visibilitychange', this.handleVisiable)
 
@@ -175,5 +197,20 @@ span{
 {
   background-color: #999;
 }
-
+.slide-left-enter {
+  opacity: 0;
+  -webkit-transform: translate(0px, 30px);
+  transform: translate(0px, 30px);
+}
+.slide-left-enter-active{
+  transition: all .5s ease;
+}
+.slide-left-leave-to{
+  opacity: 0;
+  -webkit-transform: translate(0px, -30px);
+  transform: translate(0px, -30px);
+}
+.slide-left-leave-active {
+  transition: all .5s ease;
+}
 </style>

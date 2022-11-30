@@ -38,3 +38,40 @@ export async function getPag(params){
         params:params,
     })
 }
+
+// 获取详细标签数目信息
+export async function getCountPag(params){
+    return await request({
+        url:'/api_pag/countPag/',
+        method :'get',
+        params:params,
+    })
+}
+
+// 获取公告
+export async function getAnnouncement(params){
+    return await request({
+        url:'/api_announcement/announcement/',
+        method :'get',
+        params:params,
+    })
+}
+
+// 获取分页
+export async function getArticlePage(params){
+    return await request({
+        url:'/api_article/articlespage/',
+        method :'get',
+        params:params,
+    })
+}
+
+// 获取文章数目
+export async function getArticleCount(params){
+    return await request({
+        url:'/api_article/getarticlecount/',
+        method :'get',
+        params:params,
+    })
+}
+

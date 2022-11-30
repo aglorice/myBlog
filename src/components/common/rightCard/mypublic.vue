@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="header ">
-      <img class="jumpimg" src="@/assets/img/public.png">
+      <img class="jumpimg" src="@/assets/img/public.png" alt="">
       <span>公告</span>
     </div>
     <div class="public-text">
@@ -11,12 +11,34 @@
 </template>
 
 <script>
+import {getAnnouncement} from "@/api/http";
+
 export default {
   name: `mypublic`,
   data(){
     return{
-      publicText:"这是我的第一个博客,使用vue开发123123123"
+      publicText:''
     }
+  },
+  mounted() {
+    getAnnouncement(null).then((res) => {
+      if (res.code === 200) {
+        this.$message({
+          message: '数据获取成功!',
+          type: 'success',
+          duration: 1500
+        });
+        this.publicText = res['context'][0]['fields']['announcement']
+      } else {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }
 </script>

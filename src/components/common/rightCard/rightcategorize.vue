@@ -21,12 +21,7 @@ export default {
   name: `rightcategorize`,
   data() {
     return {
-      tags: [
-        { name: 'python' },
-        { name: 'html' },
-        { name: 'css' },
-        { name: 'java' },
-      ]
+      tags: []
     };
   },
   mounted() {
