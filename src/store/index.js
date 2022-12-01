@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as getters from './getters'
-
-
+import mutations from "@/store/mutations";
+import actions from "@/store/actions";
 
 Vue.use(Vuex)
-
 const state = {
     isShow: false, // 默认值
     bottomisShow:true,
@@ -19,44 +18,6 @@ const state = {
     pageCount:[], // 标签计数
     // 文章简介加载
 }
-const actions = {
-    modifyshow(content,value){
-        content.commit("modifyShow",value)
-    },
-    modifybottomshow(content,value){ // 底部信息
-        content.commit("modifyBottomShow",value)
-    },
-    modifytarshow(content,value){
-        content.commit("modifyTarShow",value)
-    },
-    putarticle(content,value){
-        content.commit("putArticle",value)
-    },
-    putarticleinfo(content, value) {
-        content.commit("putArticleInfo",value)
-    }
-
-}
-
-const mutations = {
-    modifyShow(state,value){
-        state.isShow = value;
-    },
-    modifyBottomShow(state,value){
-        state.bottomisShow = value
-    },
-    modifyTarShow(state,value){
-        state.tarIsShow = value
-    },
-    putArticle(state,value){
-        state.articles = value
-    },
-    putArticleInfo(state,value){
-        state.article = value
-    },
-
-}
-
 // 注册上面引入的各大模块
 const store = new Vuex.Store({
     state,    // 共同维护的一个状态，state里面可以是很多个全局状态

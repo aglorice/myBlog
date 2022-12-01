@@ -67,6 +67,7 @@ import variable from "@/assets/js/variable";
 import BackUp from "@/components/common/backUp/backUp";
 import comment from "@/components/common/comment/comment";
 
+
 export default {
   name: `detailArticle`,
   props:['id'],
@@ -84,6 +85,7 @@ export default {
     }
     getDetailArticle(params).then((res) => {
       if (res.code === 200) {
+        this.$store.dispatch('modifypageview',this.id)
         let data = res['context']
         for (let item in data){
           this.articles={

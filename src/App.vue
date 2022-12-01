@@ -11,13 +11,15 @@
                          is-full-screen />
     <div v-if="isRenderStart">
       <main-tarbar></main-tarbar>
-      <transition name="slide-left" mode="out-in">
+      <transition :name="transitionName" mode="out-in">
         <keep-alive include="home,articles,categorize,pag">
 
             <router-view></router-view>
 
         </keep-alive>
       </transition>
+
+
 
       <music ></music>
       <pagebottom></pagebottom>
@@ -42,7 +44,8 @@ export default {
     return{
         isShow:this.$store.state.isShow,
         loading:true,
-        isRenderStart:false // 当父组件的数据加载完才加载子组件
+        isRenderStart:false, // 当父组件的数据加载完才加载子组件
+        transitionName:'slide-left'
     }
   },
   components: {
@@ -52,113 +55,112 @@ export default {
     VueElementLoading
 
   },
-  created () {
-    setTimeout(() => {
-      window.L2Dwidget.init({
-        pluginRootPath: 'live2dw/',
-        pluginJsPath: 'lib/',
-        pluginModelPath: 'live2d-widget-model-haru_1/assets/',
-        tagMode: false,
-        debug: false,
-        model: { jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json' },
-        display: { position: 'left', width: 150, height: 300 },
-        mobile: { show: true },
-        log: false
-      })
-    }, 3000)
-  },
-  computed:{
 
-  },
-  mounted() {
+    created() {
+      setTimeout(() => {
+        window.L2Dwidget.init({
+          pluginRootPath: 'live2dw/',
+          pluginJsPath: 'lib/',
+          pluginModelPath: 'live2d-widget-model-haru_1/assets/',
+          tagMode: false,
+          debug: false,
+          model: {jsonPath: '/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json'},
+          display: {position: 'left', width: 150, height: 300},
+          mobile: {show: true},
+          log: false
+        })
+      }, 3000)
+    },
+    computed: {},
+    mounted() {
 
 
-    getArticle(null).then((res) => {
-      if (res.code === 200) {
-        this.$message({
-          message: '数据获取成功!',
-          type: 'success',
-          duration: 1500
-        });
-        document.getElementById('loading').remove()
-        let data = res['context']
-        let page_count = res['count']
-        let data_type_vuex = []
-        let data_type_vuex_all = {}
-        let articles = [];
-        for (let item in data){
-          articles.push({
-            id:data[1][item]['id'],
-            title:data[1][item]['title'],
-            datetime:data[1][item]['created_time'],
-            category:data[1][item]['categorize'],
-            Pageview:data[1][item]['page_view'],
-            content:data[1][item]['describe'],
-            imgsrc:variable.base_url_img+data[1][item]['head_img']
-          })
-        }
-        for (let i=1;i<=page_count;i++){
-          for (let item in data[i]){
-            data_type_vuex.push({
-              id:data[i][item]['id'],
-              title:data[i][item]['title'],
-              datetime:data[i][item]['created_time'],
-              category:data[i][item]['categorize'],
-              Pageview:data[i][item]['page_view'],
-              content:data[i][item]['describe'],
-              imgsrc:variable.base_url_img+data[i][item]['head_img']
+      getArticle(null).then((res) => {
+        if (res.code === 200) {
+          this.$message({
+            message: '数据获取成功!',
+            type: 'success',
+            duration: 1500
+          });
+          document.getElementById('loading').remove()
+          let data = res['context']
+          let page_count = res['count']
+          let data_type_vuex = []
+          let data_type_vuex_all = {}
+          let articles = [];
+          for (let item in data) {
+            articles.push({
+              id: data[1][item]['id'],
+              title: data[1][item]['title'],
+              datetime: data[1][item]['created_time'],
+              category: data[1][item]['categorize'],
+              Pageview: data[1][item]['page_view'],
+              content: data[1][item]['describe'],
+              imgsrc: variable.base_url_img + data[1][item]['head_img']
             })
           }
-          data_type_vuex_all[i] = data_type_vuex
-          data_type_vuex = []
+          for (let i = 1; i <= page_count; i++) {
+            for (let item in data[i]) {
+              data_type_vuex.push({
+                id: data[i][item]['id'],
+                title: data[i][item]['title'],
+                datetime: data[i][item]['created_time'],
+                category: data[i][item]['categorize'],
+                Pageview: data[i][item]['page_view'],
+                content: data[i][item]['describe'],
+                imgsrc: variable.base_url_img + data[i][item]['head_img']
+              })
+            }
+            data_type_vuex_all[i] = data_type_vuex
+            data_type_vuex = []
+          }
+          this.$store.dispatch('putarticle', data_type_vuex_all)
+          this.isRenderStart = true
+          // 将信息提交到vuex
+
+
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
         }
-        this.$store.dispatch('putarticle',data_type_vuex_all)
-        this.isRenderStart = true
-        // 将信息提交到vuex
+      }).catch((err) => {
+        console.log(err)
+      })
 
+      //------------------
+      getArticleCount(null).then((res) => {
+        if (res.code === 200) {
+          let data = res['context']
+          this.$store.dispatch('putarticleinfo', data)
+          // 将信息提交到vuex
+        } else {
+          this.$message({
+            type: 'info',
+            message: '数据获取失败',
+            duration: 1500
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+      //------------------
 
-      } else {
-        this.$message({
-          type: 'info',
-          message: '数据获取失败',
-          duration: 1500
-        });
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
+      //------------------
 
-    //------------------
-    getArticleCount(null).then((res) => {
-      if (res.code === 200) {
-        let data = res['context']
-        this.$store.dispatch('putarticleinfo',data)
-        // 将信息提交到vuex
-      } else {
-        this.$message({
-          type: 'info',
-          message: '数据获取失败',
-          duration: 1500
-        });
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
-    //------------------
+      document.addEventListener('visibilitychange', this.handleVisiable)
 
-    //------------------
-
-    document.addEventListener('visibilitychange', this.handleVisiable)
-
-  },
-  destroyed() {
-    document.removeEventListener('visibilitychange', this.handleVisiable)
-  },
-  methods: {
-    handleVisiable(e) {
+    },
+    destroyed() {
+      document.removeEventListener('visibilitychange', this.handleVisiable)
+    },
+    methods: {
+      handleVisiable(e) {
         if (e.target.visibilityState === 'visible') {
           document.title = "被发现啦(┬┬﹏┬┬)"
-        }else {
+        } else {
           document.title = "我藏好啦(❁´◡`❁)"
         }
       }

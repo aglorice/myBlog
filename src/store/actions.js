@@ -1,7 +1,23 @@
-// 给action注册事件处理函数。当这个函数被触发时候，将状态提交到mutations中处理
-export function modifyShow(commit, isShow) { // commit 提交；name即为点击后传递过来的参数，此时是 'A餐馆'
-    return commit ('modifyShow', isShow)
+const actions = {
+    modifyshow(content,value){
+        content.commit("modifyShow",value)
+    },
+    modifybottomshow(content,value){ // 底部信息
+        content.commit("modifyBottomShow",value)
+    },
+    modifytarshow(content,value){
+        content.commit("modifyTarShow",value)
+    },
+    putarticle(content,value){
+        content.commit("putArticle",value)
+    },
+    putarticleinfo(content, value) {
+        content.commit("putArticleInfo",value)
+    },
+    modifypageview(content, value){
+
+        content.commit("modifyPageView",value)
+    }
 }
 
-// ES6精简写法
-// export const modifyAName = ({commit},name) => commit('modifyAName', name)
+export default actions
