@@ -85,3 +85,13 @@ export async function getCountCategorize(params){
 }
 
 
+export async function getQqimg(params){
+    return await request({
+        url:'/api/qq/',
+        method :'get',
+        params:params,
+    })
+}
+
+
+

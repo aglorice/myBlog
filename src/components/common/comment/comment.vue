@@ -5,24 +5,84 @@
       <p>评论</p>
     </div>
 
-    <div class="comment_user">
-      <div class="comment_user_info">
-          <el-input placeholder="请输入内容" v-model="input1">
-            <template slot="prepend">Http://</template>
-          </el-input>
+      <div class="comment_user">
+        <div class="comment_user_icon">
+          <img referrerpolicy="no-referrer" :src="img_src" alt="">
+        </div>
+        <div class="comment_user_input">
+          <div class="comment_user_input_main">
+            <p id="comment_user_head_name">您的昵称:</p>
+            <div class="comment_user_info">
+              <el-input v-model="nickname" placeholder="请输入内容"
+                        @blur="search_qq($event)"
+
+              ></el-input>
+            </div>
+            <p id="comment_user_head_name">邮箱号码:</p>
+            <div class="comment_user_info">
+              <el-input v-model="email" placeholder="请输入内容"></el-input>
+            </div>
+            <p id="comment_user_head_name">您的网址:</p>
+            <div class="comment_user_info">
+              <el-input v-model="websizt" placeholder="请输入内容"></el-input>
+            </div>
+          </div>
+          <div class="comment_user_input_main">
+            <el-input
+                class="comment_input"
+                type="textarea"
+                placeholder="请输入内容"
+                v-model="comment"
+                :rows="6"
+                maxlength="200"
+                show-word-limit
+            >
+            </el-input>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
+
+import {getQqimg} from "@/api/http";
+
+
 export default {
   name: `comment`,
   data(){
     return{
-      nickname:''
+      nickname:'',
+      email:'',
+      websizt:'',
+      comment:'',
+      img_src:'https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/202212022005291.png',
+    }
+  },
+  methods:{
+    search_qq(e){
+      let search_value=e.target.value;
+      this.email = search_value+'qq.com'
+      const params = {
+        'qq_number':search_value
+      }
+      getQqimg(params).then((res) => {
+        if (res.code === 200) {
+          this.img_src = res['context']['qq_img'];
+          this.nickname = res['context']['qq_name'];
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '数据获取失败',
+          duration: 1500
+        });
+      })
     }
   }
+
 }
 </script>
 
@@ -36,8 +96,8 @@ export default {
 .comment {
   background-color: white;
   width: 1240px;
-  height: auto;
-  opacity: 0.8;
+  height: 300px;
+  opacity: 0.9;
   border-radius: 10px;
 }
 .comment_head {
@@ -46,7 +106,7 @@ export default {
   margin-bottom: 20px;
 }
 .comment_head p{
-  height: 30px;
+  height: 20px;
   font-size: 20px;
   padding: 0;
   font-family: "Microsoft YaHei UI Light";
@@ -64,9 +124,44 @@ export default {
   display: inline-block;
 }
 .comment_user {
-  width: 1240px;
+  width: 1100px;
+  height: 150px;
+  margin-left: 70px;
 }
 .comment_user_info {
-  width: 200px;
+  width: 20%;
+  display: inline-block;
+}
+.comment_user_icon {
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  float: left;
+}
+.comment_user_icon img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-top: 10px;
+  float: right;
+}
+.comment_user_input {
+  width: 90%;
+  height: 100%;
+  display: inline-block;
+  float: right;
+}
+#comment_user_head_name {
+  width: 80px;
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 30px;
+}
+.comment_user_input_main {
+  display: inline-block;
+}
+.comment_input {
+  width: 815px;
+  margin-left: 130px;
 }
 </style>
