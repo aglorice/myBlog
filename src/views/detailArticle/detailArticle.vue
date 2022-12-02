@@ -55,8 +55,10 @@
     <div class="article_body" v-show="!loading">
       <v-md-preview :text="articles.article" ></v-md-preview>
     </div>
-    <back-up></back-up>
+    <el-divider   content-position="center">发表评论</el-divider>
+
     <comment></comment>
+    <back-up></back-up>
   </div>
 
 </template>

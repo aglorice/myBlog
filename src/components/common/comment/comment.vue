@@ -1,150 +1,72 @@
 <template>
   <div class="comment">
-<!--    说点什么吧-->
-    <div class="comment-title">
-      <p>发表评论</p>
-      <span>
-        <el-tooltip class="item" effect="dark" content="该功能需要您注册并登录才能使用" placement="right">
-
-          <img src="@/assets/img/hlep.png" alt="">
-        </el-tooltip>
-      </span>
+    <div class="comment_head">
+      <img src="@/assets/img/comment.png" alt="">
+      <p>评论</p>
     </div>
-    <div class="comment-input">
 
-      <span>评论</span>
-      <div class="input-comment">
-        <el-input
-                  class="input-comment-main"
-                  type="textarea"
-                  v-model="comment"
-                  :rows="5"
-                  resize='none'
-                  placeholder="请输入内容"
-                  :maxlength='max_input'
-        ></el-input>
-        <div class="send-button">
-          <el-button type="primary"  class="send-button-main" round>发送</el-button>
-        </div>
+    <div class="comment_user">
+      <div class="comment_user_info">
+          <el-input placeholder="请输入内容" v-model="input1">
+            <template slot="prepend">Http://</template>
+          </el-input>
       </div>
-      <span style="float: right;font-family: siyuan,serif;">{{strlimit}}/{{max_input}}</span>
-
-      <img src="@/assets/img/emoji.png" class="emojiImg" alt="" @click="changeShowEmoji">
-      <VEmojiPicker
-          id="emoji"
-          v-show="isShowEmoji"
-          class="emojiShow"
-          :include="['people']"
-          :showSearch="false"
-          @select="selectEmoji"
-      />
-<!--      展示评论-->
-    <div class="all_comment">
-      <el-divider content-position="center">四月是你的谎言</el-divider>
-      <p>全部评论</p>
     </div>
-
-    </div>
-
   </div>
 </template>
 
 <script>
-import { Picker } from "emoji-mart-vue"; //引入组件
 export default {
   name: `comment`,
   data(){
     return{
-      comment:"",
-      strlimit:'',
-      max_input:200, // 字数限制
-      isShowEmoji:false,
-    }
-  },
-  components:{
-    VEmojiPicker:Picker
-  },
-  methods:{
-    selectEmoji(e) {
-      this.comment += e.native;
-    },
-    changeShowEmoji(){
-      this.isShowEmoji = !this.isShowEmoji
-    }
-
-  },
-  watch:{
-    comment:{
-      immediate:true,
-      handler(value){
-        this.strlimit = value.length
-        if (this.strlimit === this.max_input){
-          this.$message.error("字数已达到最大限制")
-        }
-      }
+      nickname:''
     }
   }
 }
 </script>
 
 <style scoped>
-.all_comment {
-  width: 1100px;
-
+.el-select .el-input {
+  width: 80px;
 }
-.comment-title {
-  width: 1240px;
-  height: 40px;
-  margin-bottom: 20px;
-}
-.input-comment-main {
-  width: 1050px;
-}
-.input-comment {
-    width: 1170px;
-}
-#emoji {
-  position: relative;
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
 }
 .comment {
+  background-color: white;
   width: 1240px;
   height: auto;
-  background-color:seashell;
+  opacity: 0.8;
   border-radius: 10px;
-  margin-top: 40px;
 }
-.comment p {
+.comment_head {
+  height: 40px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+.comment_head p{
+  height: 30px;
+  font-size: 20px;
+  padding: 0;
+  font-family: "Microsoft YaHei UI Light";
   width: 100px;
-  font-size: 24px;
-  font-family: siyuan,serif;
+  margin: 5px;
+  float: left;
   display: inline-block;
-  margin: 0;
 }
-.comment  img {
-  width: 32px;
-  height: 32px;
+.comment_head img{
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  float: left;
+
   display: inline-block;
-  margin-bottom: -6px;
 }
-.emojiImg {
-  width: 25px;
-  height: 25px;
+.comment_user {
+  width: 1240px;
 }
-.comment-input {
-  width: 1050px;
-  height: auto;
-  margin: 0 170px 0 70px;
-
-}
-.comment-input span {
-  font-family:siyuan,serif;
-}
-.send-button-main {
-  margin-top: 35px;
-}
-.send-button{
-  float: right;
-  width: 104px;
-
+.comment_user_info {
+  width: 200px;
 }
 </style>

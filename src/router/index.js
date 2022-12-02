@@ -7,8 +7,7 @@ const Remind = ()=> import ("@/views/remind/remind");
 const Categorize = ()=> import("@/views/categorize/categorize");
 const Pag = ()=> import("@/views/pag/pag");
 const Article = ()=> import("@/views/article/articles");
-const Login = ()=> import("@/views/login/login");
-const Register = ()=> import("@/views/register/register");
+
 const Home = ()=> import("@/views/home/home");
 const Filetime = ()=> import("@/views/filetime/filetime");
 const detailArticle = ()=> import("@/views/detailArticle/detailArticle")
@@ -21,20 +20,6 @@ const routes = [
         path:'',
         redirect:'/home',
 
-    },
-    {
-        path: '/login',
-        component:Login,
-        meta:{
-            title:'登录'
-        }
-    },
-    {
-        path: '/register',
-        component:Register,
-        meta:{
-            title:'注册'
-        }
     },
     {
         path: '/home',
