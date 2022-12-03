@@ -20,7 +20,7 @@
             </div>
             <p id="comment_user_head_name">邮箱号码:</p>
             <div class="comment_user_info">
-              <el-input v-model="email" placeholder="请输入内容"></el-input>
+              <el-input v-model="email" type="email" placeholder="请输入内容"></el-input>
             </div>
             <p id="comment_user_head_name">您的网址:</p>
             <div class="comment_user_info">
@@ -29,6 +29,7 @@
           </div>
           <div class="comment_user_input_main">
             <el-input
+                id="input"
                 class="comment_input"
                 type="textarea"
                 placeholder="请输入内容"
@@ -36,8 +37,15 @@
                 :rows="6"
                 maxlength="200"
                 show-word-limit
+                @focus="change_emoji_show"
             >
             </el-input>
+            <div class="input_emoji">
+              <img @click="showEmoji" src="@/assets/img/emoji.png" alt="">
+              <VEmojiPicker id="emoji_box" labelSearch="Search" v-show="showDialog" @select="selectEmoji"/>
+              <el-button id="send_button" type="primary" size="small" round :loading="false">发送</el-button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -48,7 +56,7 @@
 <script>
 
 import {getQqimg} from "@/api/http";
-
+import {VEmojiPicker} from 'v-emoji-picker'
 
 export default {
   name: `comment`,
@@ -59,7 +67,11 @@ export default {
       websizt:'',
       comment:'',
       img_src:'https://img-1310166437.cos.ap-chengdu.myqcloud.com/img/202212022005291.png',
+      showDialog: false
     }
+  },
+  components:{
+    VEmojiPicker
   },
   methods:{
     search_qq(e){
@@ -80,6 +92,15 @@ export default {
           duration: 1500
         });
       })
+    },
+    selectEmoji(emoji) {// 选择emoji后调用的函数
+      this.comment = this.comment +emoji.data
+    },
+    showEmoji(){
+      this.showDialog = !this.showDialog
+    },
+    change_emoji_show(){
+      this.showDialog = false
     }
   }
 
@@ -96,7 +117,7 @@ export default {
 .comment {
   background-color: white;
   width: 1240px;
-  height: 300px;
+  height: 350px;
   opacity: 0.9;
   border-radius: 10px;
 }
@@ -155,7 +176,9 @@ export default {
   width: 80px;
   font-size: 16px;
   display: inline-block;
+  font-family: "Microsoft YaHei UI Light";
   margin-left: 30px;
+  color: #8fd0e3;
 }
 .comment_user_input_main {
   display: inline-block;
@@ -163,5 +186,25 @@ export default {
 .comment_input {
   width: 815px;
   margin-left: 130px;
+}
+.input_emoji {
+  width: 815px;
+  height: 40px;
+  float: right;
+  margin-right: 45px;
+}
+.input_emoji img{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-top: 5px;
+}
+#send_button {
+  display: inline-block;
+  float: right;
+  margin-top: 5px;
+}
+#emoji_box {
+  height: 200px;
 }
 </style>
